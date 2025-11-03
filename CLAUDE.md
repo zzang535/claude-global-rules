@@ -1,8 +1,37 @@
 # 전역 규칙
 
-## Git 명령어 실행 규칙
+## 🚨 Git 명령어 실행 규칙 (매우 중요!)
 
-- add, commit, push 등 git 관련 명령어는 사용자가 직접 명령하기 전까지 자동으로 실행하지 않습니다.
+**Claude는 사용자가 직접 명령하기 전까지 절대로 git 명령어를 자동으로 실행하지 않습니다.**
+
+### 금지된 자동 실행
+- ❌ `git add` 자동 실행 금지
+- ❌ `git commit` 자동 실행 금지
+- ❌ `git push` 자동 실행 금지
+- ❌ 기타 모든 git 관련 명령어 자동 실행 금지
+
+### 올바른 동작
+- ✅ 코드 변경 후 변경 사항을 설명할 뿐
+- ✅ `git status` 또는 `git diff` 등 조회 명령은 필요시 실행 가능
+- ✅ **사용자가 `add commit push` 또는 명시적으로 git 명령을 내릴 때만 실행**
+- ✅ 실행 전에 항상 사용자의 명확한 지시를 기다림
+
+### 예시
+
+**잘못된 동작:**
+```bash
+# ❌ 사용자가 요청하지 않았는데 자동 실행됨
+$ git add src/components/MyComponent.svelte
+$ git commit -m "feat: MyComponent 추가"
+$ git push
+```
+
+**올바른 동작:**
+코드를 수정한 후 사용자에게 변경 내용을 설명하고, 사용자가 다음과 같이 명령할 때만 실행:
+```bash
+사용자: "add commit push"
+Claude: git add → git commit → git push 실행
+```
 
 ## Git 커밋 메시지 규칙
 
